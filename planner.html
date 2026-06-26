@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner | Academic Task Architecture</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .planner-container {
+            max-width: 650px;
+            margin: 2rem auto 0 auto;
+        }
+        .planner-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .planner-header h1 {
+            font-size: 2.25rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+        .planner-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        
+        /* Input Deck Configuration */
+        .input-group {
+            display: flex;
+            gap: 0.75rem;
+            background-color: var(--bg-secondary);
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+        .input-group input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-family: var(--font-sans);
+            padding: 0.5rem;
+        }
+        .input-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Task List Matrix */
+        .task-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 1rem 1.25rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        .task-item:hover {
+            border-color: #1e293b;
+        }
+        .task-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            flex: 1;
+        }
+        .task-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .task-item.completed .task-checkbox {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+        .task-text {
+            font-size: 0.95rem;
+            transition: var(--transition);
+            color: var(--text-main);
+            user-select: none;
+        }
+        .task-item.completed .task-text {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+        .delete-btn {
+            background: transparent;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-family: monospace;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .delete-btn:hover {
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+        .empty-state {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 2rem;
+            border: 1px dashed var(--border);
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">ABUBAKAR<span>.</span></a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="planner.html" class="active">Planner</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="planner-container">
+            <section class="planner-header">
+                <h1>Academic Planner</h1>
+                <p>Track targets, core security labs, and milestone deliverables in real-time.</p>
+            </section>
+
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="Add an operational task (e.g., Study HTML Semantic Elements)..." autocomplete="off">
+                <button id="addTaskBtn" class="btn">Add Task</button>
+            </div>
+
+            <ul id="taskList" class="task-list">
+                <div id="emptyMessage" class="empty-state">No active targets initialized in current system matrix.</div>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Abubakar. Miva Open University Lab Assessment.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskInput = document.getElementById('taskInput');
+            const addTaskBtn = document.getElementById('addTaskBtn');
+            const taskList = document.getElementById('taskList');
+            const emptyMessage = document.getElementById('emptyMessage');
+
+            // Toggle rendering visibility for empty tracking status
+            function updateEmptyState() {
+                const currentTasks = taskList.querySelectorAll('.task-item');
+                if (currentTasks.length === 0) {
+                    emptyMessage.style.display = 'block';
+                } else {
+                    emptyMessage.style.display = 'none';
+                }
+            }
+
+            // Core Execution Function to build elements securely
+            function createNewTask() {
+                const taskRawValue = taskInput.value.trim();
+                
+                // Defensive Input validation length boundaries
+                if (taskRawValue === '') {
+                    return; 
+                }
+
+                // Node Element Architecture
+                const li = document.createElement('li');
+                li.className = 'task-item';
+
+                const contentWrapper = document.createElement('div');
+                contentWrapper.className = 'task-content';
+
+                const checkboxMock = document.createElement('div');
+                checkboxMock.className = 'task-checkbox';
+
+                const span = document.createElement('span');
+                span.className = 'task-text';
+                // Security Mitigation: Explicit text content binding to counter standard XSS vectors
+                span.textContent = taskRawValue;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'delete-btn';
+                deleteButton.textContent = '[ REMOVE ]';
+
+                // Append mappings
+                contentWrapper.appendChild(checkboxMock);
+                contentWrapper.appendChild(span);
+                li.appendChild(contentWrapper);
+                li.appendChild(deleteButton);
+                taskList.appendChild(li);
+
+                // Housekeeping clear actions
+                taskInput.value = '';
+                updateEmptyState();
+
+                // Interactive Event Registration 1: Toggle Completion
+                contentWrapper.addEventListener('click', () => {
+                    li.classList.toggle('completed');
+                });
+
+                // Interactive Event Registration 2: Purge Element
+                deleteButton.addEventListener('click', () => {
+                    li.remove();
+                    updateEmptyState();
+                });
+            }
+
+            // Bind triggers
+            addTaskBtn.addEventListener('click', createNewTask);
+            taskInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    createNewTask();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

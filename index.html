@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abubakar | Secure Web Developer & Security Analyst</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        .hero-text {
+            flex: 1;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+        }
+        .hero-text h1 span {
+            color: var(--accent);
+        }
+        .hero-text .subtitle {
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+        .hero-image-wrapper {
+            position: relative;
+        }
+        .hero-image {
+            width: 320px;
+            height: 320px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2.5rem;
+                margin-top: 1rem;
+            }
+            .hero-text h1 { font-size: 2.25rem; }
+            .hero-image {
+                width: 260px;
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">ABUBAKAR<span>.</span></a>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="planner.html">Planner</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero-container">
+            <section class="hero-text">
+                <div class="subtitle">Secure Development & Digital Defense</div>
+                <h1>Building functional web ecosystems designed to <span>endure</span>.</h1>
+                <p>
+                    I am a Secure Web Developer and Cybersecurity major at Miva Open University. I bridge the gap between high-performance freelance web applications and defensive security practices—ensuring your digital footprint is clean, lightning-fast, and hardened against modern vulnerabilities.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: inherit;">
+                    <a href="projects.html" class="btn">Explore My Work</a>
+                </div>
+            </section>
+            
+            <div class="hero-image-wrapper">
+                <img src="profile.jpg" alt="Abubakar's Portrait" class="hero-image">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Abubakar. Miva Open University Lab Assessment.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Secure Communications Gateway</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-container {
+            max-width: 600px;
+            margin: 2rem auto 0 auto;
+        }
+        .contact-header {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        .contact-header h1 {
+            font-size: 2.25rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+        .contact-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Form Layout Configuration */
+        .contact-form {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .form-group input, .form-group textarea {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 0.75rem 1rem;
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Error States & Metrics */
+        .error-message {
+            color: #ef4444;
+            font-size: 0.8rem;
+            font-family: monospace;
+            display: none;
+            margin-top: 0.25rem;
+        }
+        .form-group.invalid input, .form-group.invalid textarea {
+            border-color: #ef4444;
+        }
+        .form-group.invalid .error-message {
+            display: block;
+        }
+        
+        .success-banner {
+            background-color: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--text-main);
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            text-align: center;
+            font-family: monospace;
+            display: none;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">ABUBAKAR<span>.</span></a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="planner.html">Planner</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="contact-container">
+            <section class="contact-header">
+                <h1>Secure Gateway</h1>
+                <p>Initialize a secure communication channel. Submit your details below.</p>
+            </section>
+
+            <div id="successBanner" class="success-banner">
+                [ STATUS // TRANSMISSION SECURELY VALIDATED AND SIMULATED ]
+            </div>
+
+            <form id="secureForm" class="contact-form" novalidate>
+                
+                <div class="form-group" id="nameGroup">
+                    <label for="clientName">Your Name</label>
+                    <input type="text" id="clientName" autocomplete="name">
+                    <span class="error-message" id="nameError">Please enter your name.</span>
+                </div>
+
+                <div class="form-group" id="emailGroup">
+                    <label for="clientEmail">Email Address</label>
+                    <input type="email" id="clientEmail" autocomplete="email">
+                    <span class="error-message" id="emailError">The email must be properly formatted (e.g., student@gmail.com).</span>
+                </div>
+
+                <div class="form-group" id="phoneGroup">
+                    <label for="clientPhone">Phone Number</label>
+                    <input type="text" id="clientPhone" autocomplete="tel">
+                    <span class="error-message" id="phoneError">Phone numbers should contain only numbers.</span>
+                </div>
+
+                <div class="form-group" id="messageGroup">
+                    <label for="clientMessage">Transmission Message</label>
+                    <textarea id="clientMessage"></textarea>
+                    <span class="error-message" id="messageError">Please enter a message.</span>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 0.5rem;">Submit Transmission</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Abubakar. Miva Open University Lab Assessment.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('secureForm');
+            const successBanner = document.getElementById('successBanner');
+
+            form.addEventListener('submit', (event) => {
+                // Prevent standard unvalidated server submission
+                event.preventDefault();
+                
+                // Fetch dynamic inputs
+                const name = document.getElementById('clientName');
+                const email = document.getElementById('clientEmail');
+                const phone = document.getElementById('clientPhone');
+                const message = document.getElementById('clientMessage');
+
+                let isFormValid = true;
+
+                // 1. Structural Validation: Name Verification
+                if (name.value.trim() === '') {
+                    document.getElementById('nameGroup').classList.add('invalid');
+                    isFormValid = false;
+                } else {
+                    document.getElementById('nameGroup').classList.remove('invalid');
+                }
+
+                // 2. Structural Validation: Email Format Rule Matching (Regex)
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email.value.trim())) {
+                    document.getElementById('emailGroup').classList.add('invalid');
+                    isFormValid = false;
+                } else {
+                    document.getElementById('emailGroup').classList.remove('invalid');
+                }
+
+                // 3. Structural Validation: Phone Integrity Verification (Numbers Only Pattern)
+                const phoneRegex = /^[0-9]+$/;
+                if (!phoneRegex.test(phone.value.trim())) {
+                    document.getElementById('phoneGroup').classList.add('invalid');
+                    isFormValid = false;
+                } else {
+                    document.getElementById('phoneGroup').classList.remove('invalid');
+                }
+
+                // 4. Structural Validation: Message Boundary Check
+                if (message.value.trim() === '') {
+                    document.getElementById('messageGroup').classList.add('invalid');
+                    isFormValid = false;
+                } else {
+                    document.getElementById('messageGroup').classList.remove('invalid');
+                }
+
+                // Global Validation Resolution
+                if (isFormValid) {
+                    successBanner.style.display = 'block';
+                    form.reset();
+                    
+                    // Smoothly auto-scroll up to the success notification banner
+                    successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Clear the banner display after 5 seconds automatically
+                    setTimeout(() => {
+                        successBanner.style.display = 'none';
+                    }, 5000);
+                } else {
+                    successBanner.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

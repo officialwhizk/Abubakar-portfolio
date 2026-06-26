@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Technical Architecture & Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1.1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+        .profile-section h2, .skills-section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            border-left: 3px solid var(--accent);
+            padding-left: 0.75rem;
+        }
+        .timeline-item {
+            margin-bottom: 2rem;
+        }
+        .timeline-item h3 {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+        }
+        .timeline-meta {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-family: monospace;
+            text-transform: uppercase;
+        }
+        .timeline-item p {
+            color: var(--text-muted);
+            font-size: 0.975rem;
+            line-height: 1.6;
+        }
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .skills-category-box {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.25rem;
+        }
+        .skills-category-title {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-family: monospace;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .skill-tag {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.4rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.825rem;
+            font-family: monospace;
+            transition: var(--transition);
+        }
+        .skill-tag:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">ABUBAKAR<span>.</span></a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="planner.html">Planner</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="about-grid">
+            
+            <section class="profile-section">
+                <h2>Academic Profile & Core Philosophy</h2>
+                
+                <div class="timeline-item">
+                    <div class="timeline-meta">01 // Academic Track</div>
+                    <h3>B.Sc. Cybersecurity — Miva Open University</h3>
+                    <p>My academic foundation centers heavily on understanding technical network ecosystems, analyzing systemic web architecture vulnerabilities, data compliance, and data structure configurations.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-meta">02 // Freelance Strategy</div>
+                    <h3>Secure Web Development Architecture</h3>
+                    <p>As a freelance developer, I do not simply arrange components to look pleasing on screen. I build high-performance web products with defensive design principles. Every data pipeline, structural form layer, and interactive script is assembled natively from scratch using clean, resilient development systems.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-meta">03 // Interests & Ergonomics</div>
+                    <h3>Analytical Evolution & Nature</h3>
+                    <p>Beyond terminal connections, I spend my time exploring engineering documentation and developing new practical skills. To balance deep technical development cycles, I frequently step away from interfaces to try new immersive activities out in nature.</p>
+                </div>
+            </section>
+
+            <section class="skills-section">
+                <h2>Technical Infrastructure</h2>
+                <div class="skills-container">
+                    
+                    <div class="skills-category-box">
+                        <div class="skills-category-title">Frontend Engineering</div>
+                        <div class="skills-grid">
+                            <div class="skill-tag">HTML5 (Semantic DOM)</div>
+                            <div class="skill-tag">CSS3 Flexbox / Grid</div>
+                            <div class="skill-tag">Responsive Design</div>
+                            <div class="skill-tag">Fluid Layout UI</div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category-box">
+                        <div class="skills-category-title">Programmatic Logic</div>
+                        <div class="skills-grid">
+                            <div class="skill-tag">Vanilla JS (ES6+)</div>
+                            <div class="skill-tag">Asynchronous Events</div>
+                            <div class="skill-tag">DOM Manipulation</div>
+                            <div class="skill-tag">Data Type Operations</div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category-box">
+                        <div class="skills-category-title">Defensive Security</div>
+                        <div class="skills-grid">
+                            <div class="skill-tag">Input Sanitization</div>
+                            <div class="skill-tag">Regex Form Validation</div>
+                            <div class="skill-tag">OWASP Mitigation Basics</div>
+                            <div class="skill-tag">Risk Assessment Frameworks</div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category-box">
+                        <div class="skills-category-title">DevOps & Environments</div>
+                        <div class="skills-grid">
+                            <div class="skill-tag">Git / Version Control</div>
+                            <div class="skill-tag">GitHub Ecosystem</div>
+                            <div class="skill-tag">Linux Command Line</div>
+                            <div class="skill-tag">Cloud Deployments</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Abubakar. Miva Open University Lab Assessment.</p>
+    </footer>
+
+</body>
+</html>
